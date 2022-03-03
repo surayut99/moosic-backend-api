@@ -1,0 +1,23 @@
+version: '3.0'
+services:
+  db:
+    container_name: moosic-db
+    image: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+      POSTGRES_DB: moosic
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./docker/postgres-data:/var/lib/postgresql/data
+  pgadmin:
+    container_name: moosic-db-admin
+    image: dpage/pgadmin4
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@admin.com
+      PGADMIN_DEFAULT_PASSWORD: root
+    volumes:
+      - ./docker/pgadmin:/var/lib/pgadmin
+    ports:
+      - "5050:80"
